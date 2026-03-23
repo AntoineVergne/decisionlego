@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Constitution Jam MVP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="tape"></div>
+      <p class="meta">MVP 4</p>
+      <h1>Constitution Jam</h1>
+      <p>Team-based governance design canvas: choose blocks, survive challenge cards, map a polity, and pitch a box.</p>
+    </header>
+
+    <section class="board">
+      <section class="card">
+        <h2>Jam Setup</h2>
+        <label>Team Name</label><input id="team" type="text" value="Assembly Mechanics">
+        <label>Mission</label><input id="mission" type="text" placeholder="e.g. govern a city AI procurement budget">
+        <label>Audience</label><input id="audience" type="text" placeholder="citizens, members, token holders, experts...">
+      </section>
+
+      <section class="card">
+        <h2>Cards</h2>
+        <div class="row">
+          <button id="challenge-btn">Challenge</button>
+          <button id="debrief-btn" class="ghost">Debrief</button>
+        </div>
+        <p id="challenge" class="highlight"></p>
+        <p id="debrief" class="muted"></p>
+      </section>
+    </section>
+
+    <section class="board three">
+      <section class="card">
+        <h2>Pick Blocks</h2>
+        <div id="block-picks"></div>
+        <button id="random-blocks" class="ghost">Random Blocks</button>
+      </section>
+
+      <section class="card">
+        <h2>Polity Target</h2>
+        <label>From</label><select id="from"></select>
+        <label>For</label><select id="for"></select>
+        <button id="resolve">Resolve Polity</button>
+        <p id="polity" class="highlight"></p>
+        <p id="polity-note" class="muted"></p>
+      </section>
+
+      <section class="card">
+        <h2>Quality Score</h2>
+        <label>Inclusion</label><input class="score" type="text" value="3">
+        <label>Deliberation</label><input class="score" type="text" value="3">
+        <label>Relevance</label><input class="score" type="text" value="3">
+        <label>Fairness</label><input class="score" type="text" value="3">
+        <button id="sum-score" class="ghost">Compute</button>
+        <p id="score-total" class="highlight"></p>
+      </section>
+    </section>
+
+    <section class="board two">
+      <section class="card">
+        <h2>Lego Box Pitch</h2>
+        <label>Box Name</label><input id="box-name" type="text" placeholder="Auto-generated if empty">
+        <label>Tagline</label><input id="tagline" type="text" placeholder="Pitch sentence">
+        <div class="row">
+          <button id="gen-box">Generate Pitch Box</button>
+          <button id="surprise" class="ghost">Funny Surprise</button>
+        </div>
+        <ul id="box-components"></ul>
+      </section>
+      <section class="card">
+        <h2>Export Card</h2>
+        <div class="row">
+          <button id="exp-json">JSON</button>
+          <button id="exp-md" class="ghost">Markdown</button>
+          <button id="copy" class="ghost">Copy</button>
+        </div>
+        <textarea id="export" rows="16"></textarea>
+      </section>
+    </section>
+  </main>
+  <script src="../shared/decision-lego-shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

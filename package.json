@@ -1,0 +1,26 @@
+{
+  "name": "decision-lego-simple",
+  "version": "0.1.0",
+  "description": "Installable local server for the Decision Lego simple web app",
+  "type": "module",
+  "bin": {
+    "decision-lego-simple": "bin/decision-lego-simple.js"
+  },
+  "files": [
+    "bin",
+    "simple",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node bin/decision-lego-simple.js",
+    "pack:check": "npm pack"
+  },
+  "keywords": [
+    "decision-lego",
+    "lego",
+    "governance",
+    "static-site",
+    "cli"
+  ],
+  "license": "UNLICENSED"
+}

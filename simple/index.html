@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Lego</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Left Panel: Navigation & Questions -->
+    <div class="left-panel">
+      <header class="brand">
+        <div class="logo">
+          <span class="logo-icon">◼</span>
+          <span class="logo-text">Decision Lego</span>
+        </div>
+      </header>
+
+      <div class="step-indicator">
+        <div class="step-line">
+          <div class="step-progress" id="step-progress"></div>
+        </div>
+        <div class="step-dots">
+          <span class="step-dot active" data-step="1"></span>
+          <span class="step-dot" data-step="2"></span>
+          <span class="step-dot" data-step="3"></span>
+          <span class="step-dot" data-step="4"></span>
+        </div>
+      </div>
+
+      <main class="question-area">
+        <!-- STEP 1: From - Who governs? -->
+        <section id="step-1" class="step-content active">
+          <h1 class="question-main">Who governs?</h1>
+          <p class="question-hint">The source of power</p>
+          
+          <div class="options">
+            <button class="option-card" onclick="selectFrom('one')">
+              <span class="option-number">01</span>
+              <span class="option-title">One</span>
+              <span class="option-desc">Single ruler</span>
+            </button>
+            <button class="option-card" onclick="selectFrom('few')">
+              <span class="option-number">02</span>
+              <span class="option-title">Few</span>
+              <span class="option-desc">Select group</span>
+            </button>
+            <button class="option-card" onclick="selectFrom('many')">
+              <span class="option-number">03</span>
+              <span class="option-title">Many</span>
+              <span class="option-desc">The many / all</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 1b: From - Selected how? -->
+        <section id="step-1b" class="step-content">
+          <h1 class="question-main">Selected how?</h1>
+          <p class="question-hint">The process of selection</p>
+          
+          <div class="options compact">
+            <button class="option-card small" onclick="selectFromMechanism('vote')">
+              <span class="option-icon">🗳️</span>
+              <span class="option-title">Vote</span>
+              <span class="option-desc">Psephos</span>
+            </button>
+            <button class="option-card small" onclick="selectFromMechanism('market')">
+              <span class="option-icon">💰</span>
+              <span class="option-title">Market</span>
+              <span class="option-desc">Agora</span>
+            </button>
+            <button class="option-card small" onclick="selectFromMechanism('examination')">
+              <span class="option-icon">📋</span>
+              <span class="option-title">Examination</span>
+              <span class="option-desc">Dokimasia</span>
+            </button>
+            <button class="option-card small" onclick="selectFromMechanism('kleros')">
+              <span class="option-icon">🎲</span>
+              <span class="option-title">Random</span>
+              <span class="option-desc">Kleros</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 1c: From - Which criteria? -->
+        <section id="step-1c" class="step-content">
+          <h1 class="question-main">Which criteria?</h1>
+          <p class="question-hint">Examination based on</p>
+          
+          <div class="options">
+            <button class="option-card" onclick="selectFromCriteria('birth')">
+              <span class="option-number">01</span>
+              <span class="option-title">Birth</span>
+              <span class="option-desc">Hereditary, lineage</span>
+            </button>
+            <button class="option-card" onclick="selectFromCriteria('cooptation')">
+              <span class="option-number">02</span>
+              <span class="option-title">Cooptation</span>
+              <span class="option-desc">Peer selection</span>
+            </button>
+            <button class="option-card" onclick="selectFromCriteria('merit')">
+              <span class="option-number">03</span>
+              <span class="option-title">Merit</span>
+              <span class="option-desc">Competence, skill</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 2: For - For whom? -->
+        <section id="step-2" class="step-content">
+          <h1 class="question-main">For whom?</h1>
+          <p class="question-hint">Who benefits from this power</p>
+          
+          <div class="options">
+            <button class="option-card" onclick="selectFor('one')">
+              <span class="option-number">01</span>
+              <span class="option-title">One</span>
+              <span class="option-desc">Single beneficiary</span>
+            </button>
+            <button class="option-card" onclick="selectFor('few')">
+              <span class="option-number">02</span>
+              <span class="option-title">Few</span>
+              <span class="option-desc">Select group</span>
+            </button>
+            <button class="option-card" onclick="selectFor('many')">
+              <span class="option-number">03</span>
+              <span class="option-title">Many</span>
+              <span class="option-desc">The many / all</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 2b: For - Selected how? -->
+        <section id="step-2b" class="step-content">
+          <h1 class="question-main">Selected how?</h1>
+          <p class="question-hint">The process of selection for beneficiaries</p>
+          
+          <div class="options compact">
+            <button class="option-card small" onclick="selectForMechanism('vote')">
+              <span class="option-icon">🗳️</span>
+              <span class="option-title">Vote</span>
+              <span class="option-desc">Psephos</span>
+            </button>
+            <button class="option-card small" onclick="selectForMechanism('market')">
+              <span class="option-icon">💰</span>
+              <span class="option-title">Market</span>
+              <span class="option-desc">Agora</span>
+            </button>
+            <button class="option-card small" onclick="selectForMechanism('examination')">
+              <span class="option-icon">📋</span>
+              <span class="option-title">Examination</span>
+              <span class="option-desc">Dokimasia</span>
+            </button>
+            <button class="option-card small" onclick="selectForMechanism('kleros')">
+              <span class="option-icon">🎲</span>
+              <span class="option-title">Random</span>
+              <span class="option-desc">Kleros</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 2c: For - Which criteria? -->
+        <section id="step-2c" class="step-content">
+          <h1 class="question-main">Which criteria?</h1>
+          <p class="question-hint">Examination based on</p>
+          
+          <div class="options">
+            <button class="option-card" onclick="selectForCriteria('birth')">
+              <span class="option-number">01</span>
+              <span class="option-title">Birth</span>
+              <span class="option-desc">Hereditary, lineage</span>
+            </button>
+            <button class="option-card" onclick="selectForCriteria('cooptation')">
+              <span class="option-number">02</span>
+              <span class="option-title">Cooptation</span>
+              <span class="option-desc">Peer selection</span>
+            </button>
+            <button class="option-card" onclick="selectForCriteria('merit')">
+              <span class="option-number">03</span>
+              <span class="option-title">Merit</span>
+              <span class="option-desc">Competence, skill</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 3: Building -->
+        <section id="step-3" class="step-content">
+          <div class="building-state">
+            <div class="loader-ring"></div>
+            <h1 class="question-main">Building your polity</h1>
+            <p class="question-hint">Generating LEGO visualization</p>
+          </div>
+        </section>
+
+        <!-- STEP 4: Result -->
+        <section id="step-4" class="step-content">
+          <div class="result-info">
+            <span class="result-label">Welcome in</span>
+            <h1 class="result-title" id="result-name">Democracy</h1>
+            
+            <div class="result-meta">
+              <div class="meta-item">
+                <span class="meta-label">From</span>
+                <span class="meta-value" id="result-from">Many / Vote</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">For</span>
+                <span class="meta-value" id="result-for">Many / All</span>
+              </div>
+            </div>
+
+            <div class="result-actions">
+              <button class="action-btn secondary" onclick="downloadImage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                <span>Download</span>
+              </button>
+              <button class="action-btn" onclick="resetGame()">
+                <span>Build Another</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="selection-preview" id="selection-preview">
+        <div class="preview-item" id="preview-from">
+          <span class="preview-label">From</span>
+          <span class="preview-value">—</span>
+        </div>
+        <div class="preview-divider"></div>
+        <div class="preview-item" id="preview-for">
+          <span class="preview-label">For</span>
+          <span class="preview-value">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Visualization -->
+    <div class="right-panel">
+      <div class="visualization-container">
+        <!-- Initial State -->
+        <div id="viz-welcome" class="viz-state active">
+          <div class="welcome-graphic">
+            <div class="floating-blocks">
+              <div class="f-block red"></div>
+              <div class="f-block blue"></div>
+              <div class="f-block yellow"></div>
+              <div class="f-block green"></div>
+            </div>
+            <p class="welcome-text">What polity will you build?</p>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="viz-loading" class="viz-state">
+          <div class="building-animation">
+            <div class="construct-block b1"></div>
+            <div class="construct-block b2"></div>
+            <div class="construct-block b3"></div>
+            <div class="construct-block b4"></div>
+          </div>
+          <p class="loading-text">Assembling your LEGO set...</p>
+        </div>
+
+        <!-- Result State -->
+        <div id="viz-result" class="viz-state">
+          <div class="image-frame">
+            <img id="ai-generated-image" src="" alt="Generated LEGO box">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

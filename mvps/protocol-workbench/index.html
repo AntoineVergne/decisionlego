@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protocol Workbench MVP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <p class="meta">MVP 3</p>
+      <h1>Protocol Workbench</h1>
+      <p>Diagnose an existing institution, decompose its governance into functions, and recompose a mixed polity architecture.</p>
+    </header>
+
+    <section class="card two">
+      <section>
+        <h2>Institution Intake</h2>
+        <label>Name</label><input id="inst-name" type="text" placeholder="e.g. European Climate Mission Board">
+        <label>Mission</label><textarea id="inst-mission" rows="4" placeholder="What must this institution decide or coordinate?"></textarea>
+        <label>Main Decision Types</label><textarea id="inst-decisions" rows="4" placeholder="Agenda, budget, standards, membership, oversight..."></textarea>
+      </section>
+      <section>
+        <h2>Risk Register</h2>
+        <div class="row">
+          <label><input type="checkbox" class="risk" value="capture"> elite capture</label>
+          <label><input type="checkbox" class="risk" value="deadlock"> deadlock</label>
+          <label><input type="checkbox" class="risk" value="opacity"> opacity</label>
+          <label><input type="checkbox" class="risk" value="exclusion"> exclusion</label>
+          <label><input type="checkbox" class="risk" value="implementation"> implementation gap</label>
+          <label><input type="checkbox" class="risk" value="misinfo"> misinformation</label>
+        </div>
+        <button id="risk-recommend">Recommend Safeguards</button>
+        <ul id="risk-output"></ul>
+      </section>
+    </section>
+
+    <section class="card">
+      <div class="bar">
+        <h2>Mixed Polity Composer</h2>
+        <button id="randomize">Randomize</button>
+      </div>
+      <div id="composer"></div>
+      <p id="composition-summary" class="muted"></p>
+    </section>
+
+    <section class="card two">
+      <section>
+        <h2>Block Library Suggestions</h2>
+        <button id="suggest-blocks">Suggest Blocks</button>
+        <ul id="block-suggestions"></ul>
+      </section>
+      <section>
+        <h2>Export Design</h2>
+        <div class="actions">
+          <button id="export-json">JSON</button>
+          <button id="export-md" class="ghost">Markdown</button>
+          <button id="copy-export" class="ghost">Copy</button>
+        </div>
+        <textarea id="export" rows="14"></textarea>
+      </section>
+    </section>
+  </main>
+  <script src="../shared/decision-lego-shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

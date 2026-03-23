@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Lego Quiz Duel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="meta">MVP 0.5 - Quiz Duel</p>
+        <h1>What Is Fairer?</h1>
+        <p class="sub">Fast governance quiz: choose A, B, or Depends. Borderline chaos is sometimes correct.</p>
+      </div>
+      <div class="hero-actions">
+        <button id="next-btn" type="button">Next Card</button>
+        <button id="shuffle-btn" type="button" class="ghost">Shuffle Deck</button>
+      </div>
+    </header>
+
+    <section class="status-bar card">
+      <div class="stat"><span class="label">Score</span><strong id="score">0</strong></div>
+      <div class="stat"><span class="label">Streak</span><strong id="streak">0</strong></div>
+      <div class="stat"><span class="label">Card</span><strong id="card-count">1/1</strong></div>
+      <div class="stat"><span class="label">Mode</span><strong id="mode-pill">All</strong></div>
+      <div class="filters">
+        <button id="filter-all" type="button" class="chip active">All</button>
+        <button id="filter-borderline" type="button" class="chip">Borderline</button>
+      </div>
+    </section>
+
+    <section class="card round-card" aria-live="polite">
+      <div class="prompt-head">
+        <p id="question-category" class="category"></p>
+        <p id="question-prompt" class="prompt"></p>
+        <p id="question-context" class="context"></p>
+      </div>
+
+      <div class="duel-grid">
+        <button id="pick-a" class="option-card" type="button" aria-label="Choose option A">
+          <span class="badge">A</span>
+          <span id="option-a-title" class="opt-title"></span>
+          <span id="option-a-body" class="opt-body"></span>
+        </button>
+
+        <button id="pick-b" class="option-card" type="button" aria-label="Choose option B">
+          <span class="badge">B</span>
+          <span id="option-b-title" class="opt-title"></span>
+          <span id="option-b-body" class="opt-body"></span>
+        </button>
+      </div>
+
+      <div class="decision-row">
+        <button id="pick-depends" type="button" class="depends">Depends / Borderline</button>
+      </div>
+
+      <section id="reveal-panel" class="reveal hidden">
+        <p id="verdict-label" class="verdict"></p>
+        <p id="reveal-result" class="result"></p>
+        <p id="reveal-why" class="why"></p>
+        <p id="reveal-lawyer" class="lawyer"></p>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2>How to Play</h2>
+      <ol class="how">
+        <li>Read the prompt.</li>
+        <li>Pick `A`, `B`, or `Depends`.</li>
+        <li>Argue with the reveal if you disagree.</li>
+        <li>Use `Borderline` mode when you want pure edge-case chaos.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+:root {
+  --bg: #f7f3e9;
+  --panel: #fffdf7;
+  --ink: #1c1d1f;
+  --muted: #5b5f66;
+  --line: #d8cfbc;
+  --accent: #1f6f5f;
+  --accent-2: #d96f32;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 10%, #f3dfb8 0 12%, transparent 13%),
+    radial-gradient(circle at 90% 20%, #d8ebe2 0 11%, transparent 12%),
+    linear-gradient(180deg, #f9f6ef, var(--bg));
+  color: var(--ink);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.hero, .card {
+  background: color-mix(in srgb, var(--panel) 92%, white);
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.meta { margin: 0; color: var(--accent); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; font-size: 12px; }
+h1, h2 { margin: 6px 0 8px; line-height: 1.1; }
+.sub { margin: 0 0 12px; color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.row, .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+label { display: block; margin: 10px 0 4px; font-weight: 700; font-size: 14px; }
+input, select, textarea, button {
+  font: inherit;
+}
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: white;
+}
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+button.ghost {
+  background: white;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+button:hover { filter: brightness(.98); }
+.big {
+  margin: 10px 0 4px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+.muted { margin: 4px 0; color: var(--muted); }
+.note {
+  margin: 10px 0 0;
+  padding: 10px;
+  border-left: 4px solid var(--accent);
+  background: #f1f8f5;
+  border-radius: 8px;
+}
+ul { margin: 10px 0 0; padding-left: 20px; }
+textarea { resize: vertical; }
+
+@media (max-width: 760px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .page { padding: 12px; }
+}

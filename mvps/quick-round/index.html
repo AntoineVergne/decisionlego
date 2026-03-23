@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Lego Quick Round</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="meta">MVP 0 - Simplest</p>
+      <h1>Decision Lego: Quick Round</h1>
+      <p class="sub">One screen, one round, one governance design pitch. Start here for first-time players.</p>
+      <div class="actions">
+        <button id="new-round" type="button">New Round</button>
+        <button id="surprise-all" type="button" class="ghost">Surprise Me</button>
+      </div>
+    </header>
+
+    <section class="card grid2">
+      <section>
+        <h2>1. Context</h2>
+        <label for="team">Team</label>
+        <input id="team" type="text" value="Team A">
+        <label for="mission">Mission (optional)</label>
+        <input id="mission" type="text" placeholder="e.g. decide a neighborhood climate budget">
+      </section>
+      <section>
+        <h2>2. Challenge</h2>
+        <div class="row">
+          <button id="draw-challenge" type="button" class="ghost">New Challenge</button>
+          <button id="draw-debrief" type="button" class="ghost">New Debrief</button>
+        </div>
+        <p id="challenge-title" class="big"></p>
+        <p id="challenge-effect" class="muted"></p>
+        <p id="debrief" class="note"></p>
+      </section>
+    </section>
+
+    <section class="card grid2">
+      <section>
+        <h2>3. Build the Decision Recipe</h2>
+        <label for="proc">How do we reduce choices?</label>
+        <select id="proc"></select>
+        <label for="just">Why use it?</label>
+        <select id="just"></select>
+        <div class="row">
+          <button id="swap-procedure" type="button" class="ghost">Randomize Recipe</button>
+        </div>
+        <p id="recipe-summary" class="note"></p>
+      </section>
+      <section>
+        <h2>4. Who Governs / Who Benefits</h2>
+        <label for="from-axis">Who governs (From)</label>
+        <select id="from-axis"></select>
+        <label for="for-axis">Who benefits (For)</label>
+        <select id="for-axis"></select>
+        <div class="row">
+          <button id="swap-polity" type="button" class="ghost">Randomize Polity</button>
+          <button id="resolve" type="button">Resolve</button>
+        </div>
+        <p id="polity-name" class="big"></p>
+        <p id="polity-meta" class="muted"></p>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2>5. Pitch the Box (30 seconds)</h2>
+      <div class="grid2">
+        <section>
+          <label for="box-name">Box Name</label>
+          <input id="box-name" type="text" placeholder="Auto-generated">
+          <label for="tagline">Tagline</label>
+          <input id="tagline" type="text" placeholder="One sentence pitch">
+          <div class="actions">
+            <button id="generate-pitch" type="button">Generate Pitch</button>
+            <button id="funny-name" type="button" class="ghost">Funny Name</button>
+          </div>
+          <ul id="components"></ul>
+        </section>
+        <section>
+          <label for="export">Quick Export (Markdown)</label>
+          <textarea id="export" rows="14" readonly></textarea>
+          <div class="actions">
+            <button id="copy" type="button" class="ghost">Copy</button>
+          </div>
+          <p id="status" class="muted"></p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="../shared/decision-lego-shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arcade Parliament MVP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="kicker">MVP 2</p>
+      <h1>Arcade Parliament</h1>
+      <p>Fast rounds, challenge cards, and team scoring. A playful facilitation-first governance design game.</p>
+    </header>
+
+    <section class="panel grid2">
+      <div>
+        <h2>Round Control</h2>
+        <label>Teams</label>
+        <input id="teams" type="text" value="Alpha, Beta, Gamma">
+        <div class="row">
+          <div>
+            <label>Minutes</label>
+            <input id="minutes" type="text" value="7">
+          </div>
+          <div>
+            <label>Timer</label>
+            <div id="timer" class="timer">07:00</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="start">Start</button>
+          <button id="stop" class="ghost">Stop</button>
+          <button id="reset" class="ghost">Reset</button>
+          <button id="next-round">Next Round</button>
+        </div>
+        <p id="round-label" class="muted"></p>
+      </div>
+      <div>
+        <h2>Current Round Cards</h2>
+        <button id="draw-challenge" class="ghost">Draw Challenge</button>
+        <p id="challenge-title" class="big"></p>
+        <p id="challenge-effect" class="muted"></p>
+        <ul id="challenge-tags"></ul>
+        <button id="draw-debrief" class="ghost">Draw Debrief</button>
+        <p id="debrief" class="muted"></p>
+      </div>
+    </section>
+
+    <section class="panel grid3">
+      <div>
+        <h2>Mechanism Combo</h2>
+        <label>Procedure</label>
+        <select id="proc"></select>
+        <label>Justification</label>
+        <select id="just"></select>
+        <label>Interpretation</label>
+        <select id="interp">
+          <option>Deterministic</option>
+          <option>Probabilistic</option>
+          <option>Finalist</option>
+        </select>
+        <button id="score-combo">Score This Combo</button>
+        <p id="combo-result" class="big"></p>
+        <p id="combo-notes" class="muted"></p>
+      </div>
+      <div>
+        <h2>Mini Polity Resolver</h2>
+        <label>From</label>
+        <select id="from-axis"></select>
+        <label>For</label>
+        <select id="for-axis"></select>
+        <button id="resolve-polity" class="ghost">Resolve</button>
+        <p id="polity-name" class="big"></p>
+        <p id="polity-meta" class="muted"></p>
+      </div>
+      <div>
+        <h2>Scoreboard</h2>
+        <div class="actions">
+          <button id="build-board" class="ghost">Build</button>
+          <button id="sample-board" class="ghost">Sample</button>
+        </div>
+        <div id="scoreboard"></div>
+      </div>
+    </section>
+  </main>
+  <script src="../shared/decision-lego-shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

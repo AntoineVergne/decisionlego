@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Lego - Governance Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero panel">
+      <p class="eyebrow">Decision Lego</p>
+      <h1>Governance Game</h1>
+      <p class="subtitle">
+        A progressive game inspired by the paper: start with mechanisms, build procedures, compose blocks,
+        resolve a polity from the page-11 matrix, then assemble a custom lego box and give it a funny name.
+      </p>
+      <div class="level-nav" role="tablist" aria-label="Game levels">
+        <button class="level-tab active" data-level="1" type="button">1. Mechanism</button>
+        <button class="level-tab" data-level="2" type="button">2. Procedure</button>
+        <button class="level-tab" data-level="3" type="button">3. Block</button>
+        <button class="level-tab" data-level="4" type="button">4. Polity</button>
+        <button class="level-tab" data-level="5" type="button">5. Lego Box</button>
+      </div>
+      <div id="progress-badges" class="badge-row"></div>
+    </header>
+
+    <section id="level-1" class="panel level-section is-active" aria-labelledby="lvl1-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Level 1</p>
+          <h2 id="lvl1-title">Mechanism Detective</h2>
+        </div>
+        <button id="mechanism-random-btn" class="button-secondary" type="button">Random Quiz</button>
+      </div>
+      <p class="subtitle">Answer questions about how the reduction happens to infer one of the 4 mechanisms.</p>
+
+      <div class="quiz-grid">
+        <div class="layer">
+          <label for="mech-q1">Q1. What mainly reduces "many options"?</label>
+          <select id="mech-q1"></select>
+        </div>
+        <div class="layer">
+          <label for="mech-q2">Q2. What is the central "tool of reduction"?</label>
+          <select id="mech-q2"></select>
+        </div>
+        <div class="layer">
+          <label for="mech-q3">Q3. Is an aleatory (chance) moment constitutive?</label>
+          <select id="mech-q3"></select>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <p class="eyebrow">Mechanism Result</p>
+        <p id="mechanism-result" class="result-name"></p>
+        <p id="mechanism-status" class="result-status"></p>
+        <ul id="mechanism-examples" class="list"></ul>
+      </div>
+    </section>
+
+    <section id="level-2" class="panel level-section" aria-labelledby="lvl2-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Level 2</p>
+          <h2 id="lvl2-title">Procedure Builder</h2>
+        </div>
+        <button id="procedure-seed-btn" class="button-secondary" type="button">Use Level 1 Result</button>
+      </div>
+      <p class="subtitle">Combine a mechanism with a justification and interpretation regime to create a procedure narrative.</p>
+
+      <div class="grid">
+        <section class="panel selector-panel">
+          <div class="layer">
+            <label for="proc-mechanism">Mechanism</label>
+            <select id="proc-mechanism"></select>
+          </div>
+          <div class="layer">
+            <label for="proc-justification">Justification (Why use it?)</label>
+            <select id="proc-justification"></select>
+          </div>
+          <div class="layer">
+            <label for="proc-interpretation">Interpretation Regime</label>
+            <select id="proc-interpretation"></select>
+          </div>
+          <div class="layer">
+            <label for="proc-purpose">Purpose / Context (optional)</label>
+            <input id="proc-purpose" type="text" placeholder="e.g. choose 30 citizens to draft climate recommendations">
+          </div>
+        </section>
+
+        <section class="panel result-panel compact">
+          <p class="eyebrow">Procedure Output</p>
+          <p id="procedure-name" class="result-name"></p>
+          <p id="procedure-summary" class="result-status"></p>
+          <ul id="procedure-notes" class="list"></ul>
+        </section>
+      </div>
+    </section>
+
+    <section id="level-3" class="panel level-section" aria-labelledby="lvl3-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Level 3</p>
+          <h2 id="lvl3-title">Procedural Block Builder</h2>
+        </div>
+        <button id="block-randomize-btn" class="button-secondary" type="button">Random Block</button>
+      </div>
+      <p class="subtitle">Stack up to 3 procedures (mechanism + justification) and match known blocks or propose new ones.</p>
+
+      <div class="block-grid">
+        <section class="panel block-editor">
+          <h3>Block Steps</h3>
+          <div class="step-row">
+            <h4>Step 1</h4>
+            <label for="step1-proc">Mechanism</label>
+            <select id="step1-proc"></select>
+            <label for="step1-just">Justification</label>
+            <select id="step1-just"></select>
+          </div>
+          <div class="step-row">
+            <h4>Step 2</h4>
+            <label for="step2-proc">Mechanism</label>
+            <select id="step2-proc"></select>
+            <label for="step2-just">Justification</label>
+            <select id="step2-just"></select>
+          </div>
+          <div class="step-row">
+            <h4>Step 3</h4>
+            <label for="step3-proc">Mechanism</label>
+            <select id="step3-proc"></select>
+            <label for="step3-just">Justification</label>
+            <select id="step3-just"></select>
+          </div>
+          <p id="block-signature" class="axis-summary"></p>
+        </section>
+
+        <section class="panel block-results">
+          <h3>Matches and Ideas</h3>
+          <p id="block-match-status" class="result-status"></p>
+          <p id="block-suggested-name" class="result-name block-name"></p>
+          <div class="columns columns-tight">
+            <section>
+              <h4>Known Blocks</h4>
+              <ul id="block-known-list" class="list"></ul>
+            </section>
+            <section>
+              <h4>Candidate Names / Fill-ins</h4>
+              <ul id="block-candidate-list" class="list"></ul>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <div class="columns">
+        <section class="panel selector-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Stress Test</p>
+              <h3>Challenge Card</h3>
+            </div>
+            <button id="draw-challenge-btn" type="button" class="button-secondary">Draw Challenge</button>
+          </div>
+          <p id="challenge-title" class="result-name block-name"></p>
+          <p id="challenge-effect" class="result-status"></p>
+          <ul id="challenge-tags" class="list"></ul>
+        </section>
+        <section class="panel selector-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Debrief</p>
+              <h3>Reflection Prompt</h3>
+            </div>
+            <button id="draw-debrief-btn" type="button" class="button-secondary">Draw Debrief</button>
+          </div>
+          <p id="debrief-prompt" class="result-status"></p>
+          <div class="layer">
+            <label for="debrief-notes">Team Notes</label>
+            <textarea id="debrief-notes" rows="5" placeholder="Write the team's answer here..."></textarea>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="level-4" class="panel level-section" aria-labelledby="lvl4-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Level 4</p>
+          <h2 id="lvl4-title">Polity Matrix (Page-11 Table)</h2>
+        </div>
+        <button id="randomize-btn" class="button-secondary" type="button">Random Polity</button>
+      </div>
+      <p class="subtitle">Choose the 3 layers on both axes and resolve the polity from the paper's table.</p>
+
+      <div class="grid">
+        <section class="panel selector-panel" aria-labelledby="from-title">
+          <h3 id="from-title">From (Who Governs)</h3>
+          <div class="layer">
+            <label for="from-scope">Layer 1: Scope</label>
+            <select id="from-scope"></select>
+          </div>
+          <div class="layer">
+            <label for="from-procedure">Layer 2: Procedure</label>
+            <select id="from-procedure"></select>
+          </div>
+          <div class="layer">
+            <label for="from-subtype">Layer 3: Justification / Regime</label>
+            <select id="from-subtype"></select>
+          </div>
+          <p id="from-summary" class="axis-summary"></p>
+        </section>
+
+        <section class="panel selector-panel" aria-labelledby="for-title">
+          <h3 id="for-title">For (Who Benefits)</h3>
+          <div class="layer">
+            <label for="for-scope">Layer 1: Scope</label>
+            <select id="for-scope"></select>
+          </div>
+          <div class="layer">
+            <label for="for-procedure">Layer 2: Procedure</label>
+            <select id="for-procedure"></select>
+          </div>
+          <div class="layer">
+            <label for="for-subtype">Layer 3: Justification / Regime</label>
+            <select id="for-subtype"></select>
+          </div>
+          <p id="for-summary" class="axis-summary"></p>
+        </section>
+      </div>
+
+      <section class="panel result-panel">
+        <p class="eyebrow">Polity Result</p>
+        <p id="result-name" class="result-name"></p>
+        <p id="result-status" class="result-status"></p>
+        <div class="pill-row">
+          <span id="from-pill" class="pill"></span>
+          <span id="for-pill" class="pill"></span>
+        </div>
+        <div class="columns">
+          <section>
+            <h4>Exact Match (Table)</h4>
+            <ul id="table-notes" class="list"></ul>
+          </section>
+          <section>
+            <h4>Other Relevant Examples</h4>
+            <ul id="extra-examples" class="list"></ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel result-panel compact">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Mixed Polity Mode</p>
+            <h3>Institutional Composition</h3>
+          </div>
+          <button id="apply-current-polity-btn" class="button-secondary" type="button">Apply Current Result</button>
+        </div>
+        <p class="subtitle">Compose a governance architecture by assigning different polity profiles to different institutions.</p>
+        <div class="grid">
+          <section class="panel selector-panel">
+            <div class="layer">
+              <label for="mixed-target-institution">Target Institution</label>
+              <select id="mixed-target-institution">
+                <option value="agenda">Agenda Setting</option>
+                <option value="deliberation">Deliberation Chamber</option>
+                <option value="decision">Decision / Aggregation</option>
+                <option value="execution">Execution / Administration</option>
+                <option value="oversight">Oversight / Appeals</option>
+              </select>
+            </div>
+            <div class="action-row">
+              <button id="mixed-randomize-btn" type="button">Randomize Composition</button>
+              <button id="mixed-reset-btn" type="button" class="button-secondary">Reset</button>
+            </div>
+          </section>
+          <section class="panel selector-panel">
+            <p class="eyebrow">Mixed Profile Summary</p>
+            <ul id="mixed-polity-list" class="list"></ul>
+            <p id="mixed-polity-summary" class="result-status"></p>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section id="level-5" class="panel level-section" aria-labelledby="lvl5-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Level 5</p>
+          <h2 id="lvl5-title">Build A Lego Box</h2>
+        </div>
+        <button id="box-clear-btn" class="button-secondary danger" type="button">Clear Box</button>
+      </div>
+      <p class="subtitle">Collect your favorite procedure, block, and polity outputs into a box and generate a playful name.</p>
+
+      <div class="grid">
+        <section class="panel selector-panel">
+          <h3>Add Pieces</h3>
+          <div class="action-row">
+            <button id="add-procedure-btn" type="button">Add Current Procedure</button>
+            <button id="add-block-btn" type="button">Add Current Block</button>
+            <button id="add-polity-btn" type="button">Add Current Polity</button>
+          </div>
+          <div class="layer">
+            <label for="box-theme">Box Theme / Mission</label>
+            <input id="box-theme" type="text" placeholder="e.g. Climate Assembly for Europe">
+          </div>
+          <div class="action-row">
+            <button id="box-name-btn" type="button">Generate Box Name</button>
+            <button id="box-surprise-btn" type="button" class="button-secondary">Funny Surprise</button>
+          </div>
+        </section>
+
+        <section class="panel result-panel compact">
+          <p class="eyebrow">Lego Box</p>
+          <p id="box-name" class="result-name"></p>
+          <p id="box-tagline" class="result-status"></p>
+          <ul id="box-items" class="list"></ul>
+        </section>
+      </div>
+
+      <div class="block-grid llm-grid">
+        <section class="panel block-editor">
+          <h3>LLM Box Generator</h3>
+          <p class="subtitle">Generate a construction-toy-box style concept (title, tagline, back-of-box copy, features, and art prompt) from the current box.</p>
+
+          <details class="llm-settings">
+            <summary>API Settings (stored locally in your browser)</summary>
+            <div class="layer">
+              <label for="llm-endpoint">Endpoint URL</label>
+              <input id="llm-endpoint" type="text" placeholder="e.g. https://api.openai.com/v1/chat/completions">
+            </div>
+            <div class="grid grid-tight">
+              <div class="layer">
+                <label for="llm-model">Model</label>
+                <input id="llm-model" type="text" placeholder="e.g. gpt-4.1-mini">
+              </div>
+              <div class="layer">
+                <label for="llm-api-key">API Key</label>
+                <input id="llm-api-key" type="password" placeholder="sk-...">
+              </div>
+            </div>
+            <div class="grid grid-tight">
+              <div class="layer">
+                <label for="llm-api-mode">API Format</label>
+                <select id="llm-api-mode">
+                  <option value="chat_completions">Chat Completions</option>
+                  <option value="responses">Responses API</option>
+                </select>
+              </div>
+              <div class="layer">
+                <label for="llm-temperature">Temperature</label>
+                <input id="llm-temperature" type="text" value="0.9" placeholder="0.9">
+              </div>
+            </div>
+            <div class="action-row">
+              <button id="llm-save-settings-btn" type="button">Save Settings</button>
+              <button id="llm-clear-settings-btn" type="button" class="button-secondary danger">Clear Settings</button>
+            </div>
+          </details>
+
+          <div class="layer">
+            <label for="llm-style-notes">Style Notes (optional)</label>
+            <input id="llm-style-notes" type="text" placeholder="e.g. democratic sci-fi, civic atlas, kid-friendly but serious">
+          </div>
+
+          <div class="action-row">
+            <button id="llm-build-prompt-btn" type="button" class="button-secondary">Build Prompt</button>
+            <button id="llm-generate-btn" type="button">Generate With LLM</button>
+            <button id="llm-fallback-btn" type="button" class="button-secondary">Local Draft</button>
+          </div>
+
+          <div class="layer">
+            <label for="llm-prompt-preview">Prompt Preview</label>
+            <textarea id="llm-prompt-preview" rows="11" readonly></textarea>
+          </div>
+          <p id="llm-status" class="result-status"></p>
+        </section>
+
+        <section class="panel block-results">
+          <h3>Generated Box Copy</h3>
+          <p id="llm-box-title" class="result-name block-name"></p>
+          <p id="llm-box-tagline" class="result-status"></p>
+          <div class="columns columns-tight">
+            <section>
+              <h4>Front / Back Copy</h4>
+              <ul id="llm-copy-list" class="list"></ul>
+            </section>
+            <section>
+              <h4>Features / Modes</h4>
+              <ul id="llm-features-list" class="list"></ul>
+            </section>
+          </div>
+          <div class="layer">
+            <label for="llm-art-prompt">Art Direction Prompt</label>
+            <textarea id="llm-art-prompt" rows="8" readonly></textarea>
+          </div>
+          <div class="action-row">
+            <button id="llm-apply-to-box-btn" type="button">Use As Current Box</button>
+            <button id="llm-copy-json-btn" type="button" class="button-secondary">Copy JSON</button>
+          </div>
+          <pre id="llm-json-preview" class="json-preview" aria-label="Generated JSON preview"></pre>
+        </section>
+      </div>
+
+      <div class="block-grid">
+        <section class="panel block-editor">
+          <h3>Content Packs</h3>
+          <p class="subtitle">Load or edit challenge cards, debrief cards, and example blocks as JSON.</p>
+          <div class="action-row">
+            <button id="pack-load-core-btn" type="button">Load Core Pack</button>
+            <button id="pack-load-climate-btn" type="button">Load Climate Pack</button>
+            <button id="pack-load-dao-btn" type="button">Load DAO Pack</button>
+          </div>
+          <div class="action-row">
+            <button id="pack-save-local-btn" type="button" class="button-secondary">Save To Browser</button>
+            <button id="pack-load-local-btn" type="button" class="button-secondary">Load From Browser</button>
+            <button id="pack-reset-btn" type="button" class="button-secondary danger">Reset Packs</button>
+          </div>
+          <div class="layer">
+            <label for="pack-json-text">Pack JSON (editable)</label>
+            <textarea id="pack-json-text" rows="12"></textarea>
+          </div>
+          <div class="action-row">
+            <button id="pack-apply-json-btn" type="button">Apply JSON</button>
+            <button id="pack-copy-json-btn" type="button" class="button-secondary">Copy JSON</button>
+          </div>
+          <p id="pack-status" class="result-status"></p>
+        </section>
+
+        <section class="panel block-results">
+          <h3>Exports</h3>
+          <p class="subtitle">Export the current lego box as JSON, Markdown, or a printable card.</p>
+          <div class="action-row">
+            <button id="export-box-json-btn" type="button">Export JSON</button>
+            <button id="export-box-md-btn" type="button" class="button-secondary">Export Markdown</button>
+            <button id="print-box-card-btn" type="button" class="button-secondary">Print Card</button>
+          </div>
+          <div class="layer">
+            <label for="export-preview">Export Preview</label>
+            <textarea id="export-preview" rows="12" readonly></textarea>
+          </div>
+          <div id="print-card" class="panel result-panel compact print-card">
+            <p class="eyebrow">Printable Box Card</p>
+            <p id="print-card-title" class="result-name block-name"></p>
+            <p id="print-card-tagline" class="result-status"></p>
+            <ul id="print-card-items" class="list"></ul>
+          </div>
+          <p id="export-status" class="result-status"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel help-panel" aria-labelledby="how-title">
+      <h2 id="how-title">Workshop Use (15 min rounds)</h2>
+      <ol class="list numbered">
+        <li>Start at Level 1 and let players identify mechanisms from clues.</li>
+        <li>At Level 2, make them justify the choice and choose an interpretation regime.</li>
+        <li>At Level 3, compose procedural blocks and compare against known examples.</li>
+        <li>At Level 4, map a governance architecture to the page-11 polity matrix.</li>
+        <li>At Level 5, assemble a lego box and pitch it using inclusion, deliberation, relevance, fairness.</li>
+      </ol>
+    </section>
+
+    <section class="panel help-panel" aria-labelledby="facilitator-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Facilitator Mode</p>
+          <h2 id="facilitator-title">Rounds, Timer, and Scoreboard</h2>
+        </div>
+        <button id="facilitator-next-round-btn" type="button" class="button-secondary">Next Round</button>
+      </div>
+      <p class="subtitle">Run timed workshop rounds with challenge/debrief prompts and team scoring.</p>
+      <div class="grid">
+        <section class="panel selector-panel">
+          <div class="grid grid-tight">
+            <div class="layer">
+              <label for="facilitator-minutes">Round Minutes</label>
+              <input id="facilitator-minutes" type="text" value="10">
+            </div>
+            <div class="layer">
+              <label for="facilitator-teams">Teams (comma-separated)</label>
+              <input id="facilitator-teams" type="text" value="Team A, Team B">
+            </div>
+          </div>
+          <div class="action-row">
+            <button id="facilitator-start-btn" type="button">Start Timer</button>
+            <button id="facilitator-stop-btn" type="button" class="button-secondary">Stop</button>
+            <button id="facilitator-reset-btn" type="button" class="button-secondary">Reset</button>
+          </div>
+          <p id="facilitator-timer" class="result-name block-name">10:00</p>
+          <p id="facilitator-round-status" class="result-status"></p>
+          <ul id="facilitator-phase-list" class="list"></ul>
+        </section>
+        <section class="panel selector-panel">
+          <h3>Scoreboard</h3>
+          <div class="action-row">
+            <button id="facilitator-build-scoreboard-btn" type="button" class="button-secondary">Build Scoreboard</button>
+            <button id="facilitator-score-random-btn" type="button" class="button-secondary">Sample Scores</button>
+          </div>
+          <div id="scoreboard-table-wrap"></div>
+          <p class="subtitle">Score suggestions: coherence, inclusion, deliberation, relevance, fairness.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="mvps/shared/decision-lego-shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

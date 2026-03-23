@@ -1,0 +1,5 @@
+node_modules/
+.npm-cache/
+*.tgz
+smoke_server.err.log
+smoke_server.out.log
